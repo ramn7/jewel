@@ -1,12 +1,14 @@
+import { AppHomePath } from "@/client/misc/misc";
 import { Landing } from "@/client/components/landing/Landing";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Landing />
-      </main>
-      <footer className=""></footer>
-    </div>
-  );
+export default async function HomePage() {
+  const session = await getServerSession();
+
+  if (session) {
+    redirect(AppHomePath);
+  }
+
+  return <Landing />;
 }
