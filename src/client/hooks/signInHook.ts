@@ -7,3 +7,5 @@ export const useSignIn = () => {
 export const useProviderSignIn = () => {
   return (provider: "google" | "github") => nextAuthSignIn(provider);
 };
+
+// BLA VLA
